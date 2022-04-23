@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -12,8 +13,8 @@ import javax.persistence.Table;
 public class VaccinationRecordEntity {
     
     @Id
-    @GeneratedValue
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
     
     //PERSONAL DETAILS OF VACCINATED PERSON
     private String identificationNumber;
@@ -27,7 +28,7 @@ public class VaccinationRecordEntity {
     private Long dose;
     @Enumerated(EnumType.STRING)
     private VaccineBrand brand;
-    public Long getId() {
+    public int getId() {
         return id;
     }
     public String getIdentificationNumber() {

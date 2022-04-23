@@ -1,6 +1,8 @@
 package com.codeunity.uno.service;
 
 
+import java.util.List;
+
 import com.codeunity.uno.model.VaccinationRecordEntity;
 import com.codeunity.uno.repositary.VaccinationRecordRepository;
 
@@ -17,4 +19,7 @@ public class VaccinationRecordService {
         return vaccinationRecordRepository.save(vaccinationRecordEntity);
     }
     
+    public List<VaccinationRecordEntity> read(){
+        return vaccinationRecordRepository.findAll();
+    }
 }
