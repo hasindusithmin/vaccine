@@ -1,12 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
-    
-</body>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+  </head>
+
+  <body>
+    <table class="w3-table-all">
+      <tr class="w3-green">
+        <th>identificationNumber</th>
+        <th>firstName</th>
+        <th>lastName</th>
+        <th>address</th>
+        <th>city</th>
+        <th>serialNumber</th>
+        <th>dose</th>
+        <th>brand</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </table>
+    <!-- <div class="w3-border">
+      <div class="w3-container w3-blue">
+        <h2>Edit Form</h2>
+      </div>
+      <form class="w3-container">
+        <div class="w3-section">
+          <label>identificationNumber</label>
+          <input class="w3-input" type="text" name="identificationNumber" />
+        </div>
+        <div class="w3-section">
+          <label>firstName</label>
+          <input class="w3-input" type="text" name="firstName" />
+        </div>
+        <div class="w3-section">
+          <label>lastName</label>
+          <input class="w3-input" type="text" name="lastName" />
+        </div>
+        <div class="w3-section">
+          <label>address</label>
+          <input class="w3-input" type="text" name="address" />
+        </div>
+        <div class="w3-section">
+          <label>city</label>
+          <input class="w3-input" type="text" name="city" />
+        </div>
+        <div class="w3-section">
+          <label>serialNumber</label>
+          <input class="w3-input" type="text" name="serialNumber" />
+        </div>
+        <div class="w3-section">
+          <label>dose</label>
+          <input class="w3-input" type="text" name="dose" />
+        </div>
+        <div class="w3-section">
+          <input class="w3-input" type="submit" />
+        </div>
+      </form>
+    </div> -->
+    <script>
+      window.addEventListener("DOMContentLoaded", async (event) => {
+        const res = await fetch(
+          "/api/vaccination"
+        );
+        const data = await res.json();
+        for (dt of data) {
+          const { id } = dt;
+          let tr = document.createElement("tr");
+          for (let [key, value] of Object.entries(dt)) {
+            if (key === "id") {
+              tr.id = value;
+              continue;
+            }
+            let td = document.createElement("td");
+            td.innerHTML = value;
+            tr.appendChild(td);
+          }
+          let edit = document.createElement("button");
+          edit.innerHTML = "Edit";
+          edit.onclick = () => {
+            console.log(id);
+          };
+          tr.appendChild(edit);
+          let del = document.createElement("button");
+          del.innerHTML = "Delete";
+          del.onclick = () => {
+            console.log(id);
+          };
+          tr.appendChild(del);
+          document.querySelector("table").appendChild(tr);
+        }
+      });
+    </script>
+  </body>
 </html>
