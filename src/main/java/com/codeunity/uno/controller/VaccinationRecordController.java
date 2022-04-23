@@ -6,6 +6,8 @@ import com.codeunity.uno.model.VaccinationRecordEntity;
 import com.codeunity.uno.service.VaccinationRecordService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,18 +25,18 @@ public class VaccinationRecordController {
     private VaccinationRecordService vaccinationRecordService;
 
     @GetMapping
-    public List<VaccinationRecordEntity> getALL(){
-        return vaccinationRecordService.read();
+    public ResponseEntity<List<VaccinationRecordEntity>> getALL(){
+        return ResponseEntity.ok(vaccinationRecordService.read());
     }
 
     @PostMapping
-    public VaccinationRecordEntity addOne(@RequestBody VaccinationRecordEntity vaccinationRecordEntity){
-        return vaccinationRecordService.create(vaccinationRecordEntity);
+    public ResponseEntity<VaccinationRecordEntity> addOne(@RequestBody VaccinationRecordEntity vaccinationRecordEntity){
+        return new ResponseEntity<>(vaccinationRecordService.create(vaccinationRecordEntity),HttpStatus.CREATED);
     }
 
     @GetMapping("/{id}")
-    public VaccinationRecordEntity getOne(@PathVariable int id) {
-        return vaccinationRecordService.read(id);
+    public ResponseEntity<VaccinationRecordEntity> getOne(@PathVariable int id) {
+        return ResponseEntity.ok(vaccinationRecordService.read(id));
     }
 
 }
