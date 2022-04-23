@@ -3,6 +3,8 @@ package com.codeunity.uno.service;
 
 import java.util.List;
 
+import javax.persistence.EntityNotFoundException;
+
 import com.codeunity.uno.model.VaccinationRecordEntity;
 import com.codeunity.uno.repositary.VaccinationRecordRepository;
 
@@ -21,5 +23,9 @@ public class VaccinationRecordService {
     
     public List<VaccinationRecordEntity> read(){
         return vaccinationRecordRepository.findAll();
+    }
+
+    public VaccinationRecordEntity read(int id){
+        return vaccinationRecordRepository.findById(id).orElseThrow(EntityNotFoundException::new);
     }
 }

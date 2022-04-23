@@ -8,6 +8,7 @@ import com.codeunity.uno.service.VaccinationRecordService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,6 +30,11 @@ public class VaccinationRecordController {
     @PostMapping
     public VaccinationRecordEntity addOne(@RequestBody VaccinationRecordEntity vaccinationRecordEntity){
         return vaccinationRecordService.create(vaccinationRecordEntity);
+    }
+
+    @GetMapping("/{id}")
+    public VaccinationRecordEntity getOne(@PathVariable int id) {
+        return vaccinationRecordService.read(id);
     }
 
 }
